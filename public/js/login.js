@@ -8,9 +8,15 @@ async function login(email, password) {
         password
       }
     });
-    console.log(res);
+    if (res.data.status == 'success') {
+      alert('Login successfully !');
+      setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
   } catch (error) {
-    console.log(error);
+    alert(error.response.data.message);
+    document.querySelector('#password').value = '';
   }
 }
 

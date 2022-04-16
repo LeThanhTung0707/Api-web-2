@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
 
 const appError = require('./utils/appError');
 const tourRouter = require('./routes/tourRoutes');
@@ -34,6 +35,7 @@ app.use(xss());
 app.use(hpp());
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();

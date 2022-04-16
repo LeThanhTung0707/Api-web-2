@@ -2,7 +2,7 @@ doctype html
 html 
     head
         block head
-            <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+ 
             meta(name='viewport' content="width=device-width, initial-scale=1.0")
             link(href="https://fonts.googleapis.com/css?family=Lato:300,300i,700" rel="stylesheet")
             title Web| #{test}
@@ -15,7 +15,7 @@ html
         block content
         include includes/_footer.pug
 
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js") 
+        script(src="/js/axios.min.js") 
         script(src="/js/mapbox.js") 
         script(src="/js/login.js") 
 

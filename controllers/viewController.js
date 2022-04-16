@@ -1,6 +1,7 @@
 const { response } = require('express');
 const Tour = require('./../models/tourModel');
 const catchAsync = require('./../utils/catchAsync');
+
 exports.getOverview = catchAsync(async (req, res, next) => {
   const tours = await Tour.find();
 
