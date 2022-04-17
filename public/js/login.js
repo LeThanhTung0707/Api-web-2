@@ -1,4 +1,4 @@
-async function login(email, password) {
+const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
@@ -9,20 +9,42 @@ async function login(email, password) {
       }
     });
     if (res.data.status == 'success') {
-      alert('Login successfully !');
+      showAlert('success', 'Login successfully !');
       setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
   } catch (error) {
-    alert(error.response.data.message);
+    showAlert('error', error.response.data.message);
     document.querySelector('#password').value = '';
   }
-}
+};
+const logout = async () => {
+  try {
+    const res = await axios({
+      method: 'GET',
+      url: '/api/v1/users/logout'
+    });
+    showAlert('success', 'Log Out successfully ! ');
+    setTimeout(() => {
+      if (res.data.status == 'success') location.reload(true);
+    }, 2000);
+  } catch (error) {
+    showAlert('error', 'Error happen ! Please try again !');
+  }
+};
 
-document.querySelector('.form').addEventListener('submit', e => {
-  e.preventDefault();
-  const password = document.getElementById('password').value;
-  const email = document.getElementById('email').value;
-  login(email, password);
-});
+if (document.querySelector('.form')) {
+  document.querySelector('.form').addEventListener('submit', e => {
+    e.preventDefault();
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    login(email, password);
+  });
+}
+if (document.querySelector('.nav__el--logout')) {
+  document.querySelector('.nav__el--logout').addEventListener('click', e => {
+    e.preventDefault();
+    logout();
+  });
+}
