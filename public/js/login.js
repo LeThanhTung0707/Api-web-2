@@ -27,6 +27,7 @@ const logout = async () => {
     });
     showAlert('success', 'Log Out successfully ! ');
     setTimeout(() => {
+      if (location.pathname.startsWith('/me')) return location.assign('/');
       if (res.data.status == 'success') location.reload(true);
     }, 2000);
   } catch (error) {
@@ -34,8 +35,8 @@ const logout = async () => {
   }
 };
 
-if (document.querySelector('.form')) {
-  document.querySelector('.form').addEventListener('submit', e => {
+if (document.querySelector('.form--login')) {
+  document.querySelector('.form--login').addEventListener('submit', e => {
     e.preventDefault();
     const password = document.getElementById('password').value;
     const email = document.getElementById('email').value;
