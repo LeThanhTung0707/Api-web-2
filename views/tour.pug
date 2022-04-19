@@ -1,7 +1,9 @@
 extends base
 include _reviewCard
 
-block append head
+block prepend head
+    title= tour.name
+    
 
 mixin overviewBox(label, text, icon)
   .overview-box__detail
