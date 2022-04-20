@@ -5,7 +5,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
-const multer = require('multer');
+
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 
@@ -15,8 +15,6 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('././routes/reviewRoutes');
 const viewRouter = require('././routes/viewsRoutes');
 const globalErrorHandler = require('./controllers/errorController');
-
-const upload = multer({ dest: 'public/img/users' });
 
 const app = express();
 app.set('view engine', 'pug');
