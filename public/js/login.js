@@ -35,6 +35,27 @@ const logout = async () => {
   }
 };
 
+const signup = async (name, email, password, passwordConfirm) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: '/api/v1/users/signup',
+      data: {
+        name,
+        email,
+        password,
+        passwordConfirm
+      }
+    });
+    showAlert('success', 'Sign Up Successfully ! ');
+    setTimeout(() => {
+      location.assign('/');
+    }, 1500);
+  } catch (error) {
+    showAlert('error', error.message);
+  }
+};
+
 if (document.querySelector('.form--login')) {
   document.querySelector('.form--login').addEventListener('submit', e => {
     e.preventDefault();
@@ -47,5 +68,15 @@ if (document.querySelector('.nav__el--logout')) {
   document.querySelector('.nav__el--logout').addEventListener('click', e => {
     e.preventDefault();
     logout();
+  });
+}
+if (document.querySelector('.form--signup')) {
+  document.querySelector('.form--signup').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const passwordConfirm = document.getElementById('passwordConfirm').value;
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    signup(name, email, password, passwordConfirm);
   });
 }
